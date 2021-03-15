@@ -39,5 +39,7 @@ fn main() -> Ev3Result<()> {
     sleep(Duration::from_millis(100));
     compass.set_zero()?;
 
+    
+
     Ok(())
 }

@@ -9,7 +9,9 @@ dependencies = [
 
 [[package]]
 name = "ev3dev-lang-rust"
-version = "0.9.5"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7bf94c02cc61f7323a059a621c349785d9bb7876b6f2fa7cb1cc19f399f59142"
 dependencies = [
  "ev3dev-lang-rust-derive",
  "libc",
@@ -17,7 +19,9 @@ dependencies = [
 
 [[package]]
 name = "ev3dev-lang-rust-derive"
-version = "0.8.0"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ddd7a95543e9418e8ad0b08b6a2a47a1c33d260c97b5a056fbf8b0fdb648e9a6"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -26,9 +30,9 @@ dependencies = [
 
 [[package]]
 name = "libc"
-version = "0.2.86"
+version = "0.2.88"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b7282d924be3275cec7f6756ff4121987bc6481325397dde6ba3e7802b1a8b1c"
+checksum = "03b07a082330a35e43f63177cc01689da34fbffa0105e1246cf0311472cac73a"
 
 [[package]]
 name = "proc-macro2"
@@ -50,9 +54,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "1.0.60"
+version = "1.0.62"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c700597eca8a5a762beb35753ef6b94df201c81cca676604f547495a0d7f0081"
+checksum = "123a78a3596b24fee53a6464ce52d8ecbf62241e6294c7e7fe12086cd161f512"
 dependencies = [
  "proc-macro2",
  "quote",
