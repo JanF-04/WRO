@@ -18,28 +18,30 @@ fn main() -> Ev3Result<()> {
     let motor_b = MediumMotor::get(MotorPort::OutB)?;
     let motor_c = MediumMotor::get(MotorPort::OutC)?;
     // init omni controller (motors)
-    let omni_controller = OmniController::<60, 180, -60>::new(motor_a, motor_b, motor_c);
+    let omni_controller = OmniController::<-60, 60, 180>::new(motor_a, motor_b, motor_c);
     // get sensors
     let button = Ev3Button::new()?;
     let ir_seeker = IrSeekerSensor::find()?;
     let mut compass = CompassSensor::find()?;
     // init sensors
-    ir_seeker.set_mode_ac_all()?;
-    compass.start_calibration()?;
-    println!("Turn the robot 360°, then press the button in the middle");
-    loop {
-        button.process();
-        if button.is_enter() {
-            break;
-        } else {
-            sleep(Duration::from_millis(100));
-        }
-    }
-    compass.stop_calibration()?;
-    sleep(Duration::from_millis(100));
-    compass.set_zero()?;
+    // ir_seeker.set_mode_ac_all()?;
+    // compass.start_calibration()?;
+    // println!("Turn the robot 360°, then press the button in the middle");
+    // loop {
+    //     button.process();
+    //     if button.is_enter() {
+    //         break;
+    //     } else {
+    //         sleep(Duration::from_millis(100));
+    //     }
+    // }
+    // compass.stop_calibration()?;
+    // sleep(Duration::from_millis(100));
+    // compass.set_zero()?;
 
-    
+    omni_controller.drive_direction(0.0, 100.0)?;
+    sleep(Duration::from_millis(1000));
+    omni_controller.stop()?;
 
     Ok(())
 }
