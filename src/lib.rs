@@ -9,7 +9,7 @@ pub struct OmniController<const ADIR: i16, const BDIR: i16, const CDIR: i16> {
     motor_a: MediumMotor,
     motor_b: MediumMotor,
     motor_c: MediumMotor,
-    default_directions: [[i32;3];6],
+    default_directions: [[i32; 3]; 6],
 }
 
 // !!! you might have to use the beta or nightly channel for this to compile
@@ -30,16 +30,16 @@ impl<const ADIR: i16, const BDIR: i16, const CDIR: i16> OmniController<ADIR, BDI
         motor_a.run_direct().unwrap();
         motor_b.run_direct().unwrap();
         motor_c.run_direct().unwrap();
-        let mut default_directions: [[i32;3];6] = [[0;3];6];
+        let mut default_directions: [[i32; 3]; 6] = [[0; 3]; 6];
         let a_dir = (ADIR as f64).to_radians();
         let b_dir = (BDIR as f64).to_radians();
         let c_dir = (CDIR as f64).to_radians();
-        let directions: [f64;6] = [0.0, 60.0, 120.0, 180.0, 240.0, 300.0];
+        let directions: [f64; 6] = [0.0, 60.0, 120.0, 180.0, 240.0, 300.0];
         for (i, dir) in directions.iter().enumerate() {
             let dir = dir.to_radians();
-            default_directions[i][0] = ((dir - a_dir).sin() * 100.0) as i32;
-            default_directions[i][1] = ((dir - b_dir).sin() * 100.0) as i32;
-            default_directions[i][2] = ((dir - c_dir).sin() * 100.0) as i32;
+            default_directions[i][0] = ((dir + a_dir).sin() * 100.0) as i32;
+            default_directions[i][1] = ((dir + b_dir).sin() * 100.0) as i32;
+            default_directions[i][2] = ((dir + c_dir).sin() * 100.0) as i32;
         }
         OmniController {
             motor_a,
@@ -55,9 +55,9 @@ impl<const ADIR: i16, const BDIR: i16, const CDIR: i16> OmniController<ADIR, BDI
         let c_dir = (CDIR as f64).to_radians();
         let direction = direction.to_radians();
 
-        let a_speed = (direction - a_dir).sin() * speed;
-        let b_speed = (direction - b_dir).sin() * speed;
-        let c_speed = (direction - c_dir).sin() * speed;
+        let a_speed = (direction + a_dir).sin() * speed;
+        let b_speed = (direction + b_dir).sin() * speed;
+        let c_speed = (direction + c_dir).sin() * speed;
 
         self.set_motors(a_speed as i32, b_speed as i32, c_speed as i32)?;
 
