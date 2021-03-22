@@ -36,9 +36,26 @@ fn main() -> Ev3Result<()> {
         }
     }
     compass.stop_calibration()?;
-    sleep(Duration::from_millis(100));
+    sleep(Duration::from_millis(500));
     compass.set_zero()?;
 
+    //main program
+    omni_controller.turn(50);
+    let mut has_turned = false;
+    loop {
+        let pos = compass.get_rotation()?;
+        if (!has_turned && pos > 5) {
+            has_turned = true;
+        }
+        
+        //println!("{}", pos);
+        if (has_turned && pos < 2) {
+            omni_controller.stop();
+            break;
+        } else {
+            sleep(Duration::from_millis(20));
+        }
+    }
     
 
     Ok(())

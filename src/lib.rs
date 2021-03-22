@@ -71,7 +71,7 @@ impl<const ADIR: i16, const BDIR: i16, const CDIR: i16> OmniController<ADIR, BDI
         Ok(())
     }
 
-    fn turn(&self, speed: i32) ->  Ev3Result<()> {
+    pub fn turn(&self, speed: i32) ->  Ev3Result<()> {
         self.set_motors(speed, speed, speed)?;
         Ok(())
     }
